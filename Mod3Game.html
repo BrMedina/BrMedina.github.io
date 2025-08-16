@@ -275,20 +275,24 @@
             width: 100%;
             height: 100%;
             background: linear-gradient(90deg, transparent, rgba(138, 43, 226, 0.4), transparent);
-            transition: left 0.5s;
+            /* Removed: transition: left 0.5s; */
         }
 
-        .image-container:hover::before {
-            left: 100%;
+        /* Removed: .image-container:hover::before { left: 100%; } */
+
+        .image-container {
+            /* ... existing code ... */
+            /* Removed: transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1); */
+            /* Removed: box-shadow, border-color from hover state */
         }
 
-        .image-container:hover {
+        /* Removed: .image-container:hover {
             transform: translateY(-8px) scale(1.02);
             border-color: #0064ff;
             box-shadow: 
                 0 15px 35px rgba(138, 43, 226, 0.3),
                 0 0 25px rgba(0, 100, 255, 0.4);
-        }
+        } */
 
         .image-container canvas {
             width: 100%;
@@ -373,7 +377,7 @@
             font-size: 1.1em; /* Slightly smaller font */
             font-weight: 700;
             background: linear-gradient(135deg, white, #f0f4ff);
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.3s cubic-bezier(0.4, 0, 0.2, 1);
             cursor: pointer;
             box-shadow: 
                 0 3px 10px rgba(138, 43, 226, 0.2),
@@ -435,7 +439,7 @@
             font-size: 0.9em;
             font-weight: 700;
             cursor: pointer;
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.3s cubic-bezier(0.4, 0, 0.2, 1);
             box-shadow: 
                 0 4px 15px rgba(138, 43, 226, 0.3),
                 inset 0 1px 0 rgba(255,255,255,0.3),
@@ -443,6 +447,13 @@
             position: relative;
             overflow: hidden;
             margin: 1px;
+        }
+
+        .letter-tile:hover {
+            transform: translateY(-3px);
+            box-shadow: 
+                0 8px 20px rgba(138, 43, 226, 0.4),
+                0 0 15px rgba(0, 100, 255, 0.3);
         }
 
         .letter-tile::before {
@@ -453,20 +464,24 @@
             width: 100%;
             height: 100%;
             background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
-            transition: left 0.3s;
+            /* Removed: transition: left 0.3s; */
         }
 
-        .letter-tile:hover::before {
-            left: 100%;
+        /* Removed: .letter-tile:hover::before { left: 100%; } */
+
+        .letter-tile {
+            /* ... existing code ... */
+            /* Removed: transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); */
+            /* Removed: box-shadow from hover state */
         }
 
-        .letter-tile:hover {
+        /* Removed: .letter-tile:hover {
             background: linear-gradient(135deg, #4169e1, #9932cc);
             transform: translateY(-3px) scale(1.05);
             box-shadow: 
                 0 10px 25px rgba(138, 43, 226, 0.4),
                 0 0 20px rgba(0, 100, 255, 0.4);
-        }
+        } */
 
         .letter-tile:disabled {
             background: linear-gradient(135deg, #6a5acd, #483d8b);
@@ -507,12 +522,10 @@
             width: 100%;
             height: 100%;
             background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
-            transition: left 0.5s;
+            /* Removed: transition: left 0.5s; */
         }
 
-        .btn:hover::before {
-            left: 100%;
-        }
+        /* Removed: .btn:hover::before { left: 100%; } */
 
         .btn-primary {
             background: linear-gradient(135deg, #0064ff, #8a2be2);
@@ -727,14 +740,22 @@
             box-shadow: 
                 0 6px 20px rgba(138, 43, 226, 0.4),
                 0 0 15px rgba(75, 0, 130, 0.3);
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
         .sound-toggle:hover {
-            transform: translateY(-2px) scale(1.1);
+            transform: translateY(-3px);
             box-shadow: 
-                0 8px 25px rgba(138, 43, 226, 0.5),
-                0 0 20px rgba(75, 0, 130, 0.4);
+                0 8px 20px rgba(138, 43, 226, 0.4),
+                0 0 15px rgba(0, 100, 255, 0.3);
+        }
+
+        /* Apply similar hover to music toggle if it doesn't have one */
+        #musicToggle:hover {
+            transform: translateY(-3px);
+            box-shadow: 
+                0 8px 20px rgba(138, 43, 226, 0.4),
+                0 0 15px rgba(0, 100, 255, 0.3);
         }
 
         /* Combined Stats and Category Section */
@@ -759,12 +780,17 @@
             width: 100%;
             height: 100%;
             background: linear-gradient(90deg, transparent, rgba(138, 43, 226, 0.3), transparent);
-            transition: left 0.8s;
+            /* Removed: transition: left 0.8s; */
         }
 
-        .stats-category-section:hover::before {
-            left: 100%;
+        /* Removed: .stats-category-section:hover::before { left: 100%; } */
+
+        .stats-category-section {
+            /* ... existing code ... */
+            /* Removed: overflow: hidden; */
         }
+
+        /* Removed: .stats-category-section:hover::before { ... } */
 
         .stats-inline {
             display: flex;
@@ -783,19 +809,13 @@
             border-radius: 12px;
             background: rgba(138, 43, 226, 0.2);
             backdrop-filter: blur(10px);
-            transition: all 0.3s ease;
+            /* Removed: transition: all 0.3s ease; */
             min-width: 80px;
             border: 1px solid rgba(0, 100, 255, 0.3);
             box-shadow: 0 0 10px rgba(138, 43, 226, 0.2);
         }
 
-        .stats-inline .stat-item:hover {
-            transform: translateY(-2px);
-            background: rgba(0, 100, 255, 0.25);
-            box-shadow: 
-                0 8px 20px rgba(138, 43, 226, 0.4),
-                0 0 15px rgba(0, 100, 255, 0.3);
-        }
+        /* Removed: .stats-inline .stat-item:hover { ... } */
 
         /* Volume Slider Styling */
         #volumeSlider {
@@ -1077,10 +1097,10 @@
     <div class="game-container">
         <div class="game-header">
             <h1 class="game-title">4 Pics 1 Word!</h1>
-            <button class="btn btn-secondary" onclick="toggleSound()" id="soundToggle" style="position: absolute; top: 20px; right: 20px; min-width: auto; padding: 8px 12px;">🔊</button>
+            <button class="btn btn-secondary" onclick="toggleSound()" id="soundToggle" style="position: absolute; top: 10px; right: 20px; min-width: auto; padding: 8px 12px;">🔊</button>
             
             <!-- Music Controls -->
-            <div style="position: absolute; top: 20px; right: 80px; display: flex; align-items: center; gap: 8px;">
+            <div style="position: absolute; top: 10px; right: 80px; display: flex; align-items: center; gap: 8px;">
                 <button class="btn btn-secondary" onclick="toggleMusic()" id="musicToggle" style="min-width: auto; padding: 8px 12px;">🎵</button>
                 <!-- Volume Control -->
                 <div id="volumeControl" style="display: flex; align-items: center; gap: 6px; background: rgba(255,255,255,0.1); backdrop-filter: blur(10px); padding: 6px 10px; border-radius: 15px; border: 1px solid rgba(255,255,255,0.2);">
@@ -3738,15 +3758,20 @@
     }
 
     function getHint() {
+        const hintSection = document.getElementById('hintSection');
+        if (hintsLeft <= 0 || hintSection.classList.contains('show')) {
         if (hintsLeft <= 0) {
             alert('No hints remaining!');
+            } else if (hintSection.classList.contains('show')) {
+                // Hint already shown, do not deduct again
+                console.log("Hint already displayed, not deducting hint again.");
+            }
             return;
         }
         
         playHintSound(); // Add sound effect
         
         const round = gameData[currentRound];
-        const hintSection = document.getElementById('hintSection');
         const hintText = document.getElementById('hintText');
         
         hintText.textContent = round.mainHint;
