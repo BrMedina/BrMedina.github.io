@@ -1090,22 +1090,127 @@
         /* } */
 
         /* Mobile adjustments for controls */
+
+        /* Desktop positioning for sound and music controls */
+        #soundToggle {
+            position: absolute;
+            top: 10px;
+            right: 20px;
+            min-width: auto; /* Added back for initial aesthetic */
+            padding: 8px 12px; /* Added back for initial aesthetic */
+        }
+
+        #musicControlsContainer {
+            position: absolute;
+            top: 10px;
+            right: 80px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        #musicToggle {
+            min-width: auto; /* Added back for initial aesthetic */
+            padding: 8px 12px; /* Added back for initial aesthetic */
+        }
+
+        #volumeControl {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            background: rgba(255,255,255,0.1);
+            backdrop-filter: blur(10px);
+            padding: 6px 10px;
+            border-radius: 15px;
+            border: 1px solid rgba(255,255,255,0.2);
+        }
+
+        #volumeSlider {
+            width: 60px;
+            height: 4px;
+            background: rgba(255,255,255,0.3);
+            outline: none;
+            border-radius: 2px;
+            appearance: none;
+            cursor: pointer;
+        }
+
+        #volumeSlider::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+            background: linear-gradient(45deg, #0064ff, #8a2be2);
+            cursor: pointer;
+            box-shadow: 0 2px 6px rgba(138, 43, 226, 0.6);
+            transition: all 0.3s ease;
+        }
+
+        #volumeSlider::-webkit-slider-thumb:hover {
+            transform: scale(1.2);
+            box-shadow: 0 4px 12px rgba(138, 43, 226, 0.8);
+        }
+
+        #volumeSlider::-moz-range-thumb {
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+            background: linear-gradient(45deg, #0064ff, #8a2be2);
+            cursor: pointer;
+            border: none;
+            box-shadow: 0 2px 6px rgba(138, 43, 226, 0.6);
+            transition: all 0.3s ease;
+        }
+
+        #volumeSlider::-moz-range-thumb:hover {
+            transform: scale(1.2);
+            box-shadow: 0 4px 12px rgba(138, 43, 226, 0.8);
+        }
+
+        /* Mobile adjustments for controls */
+        @media (max-width: 768px) {
+            #soundToggle, #musicToggle {
+                position: static; /* Remove fixed positioning */
+                margin: 10px auto; /* Center and add some margin */
+                display: block; /* Ensure they take up full width */
+            }
+
+            #musicControlsContainer {
+                position: static;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                gap: 10px;
+                margin: 0 auto 10px auto; /* Center and add margin below */
+            }
+            
+            #volumeControl {
+                position: static;
+                margin: 0 auto; /* Center */
+                width: 80%; /* Adjust width for better mobile display */
+                padding: 6px 10px; /* Keep padding */
+            }
+            
+            #volumeSlider {
+                width: 100%; /* Make slider full width within its container */
+            }
+        }
     </style>
 </head>
 <body>
     <div class="game-container">
         <div class="game-header">
             <h1 class="game-title">4 Pics 1 Word!</h1>
-            <button class="btn btn-secondary" onclick="toggleSound()" id="soundToggle" style="position: absolute; top: 10px; right: 20px; min-width: auto; padding: 8px 12px;">🔊</button>
+            <button class="btn btn-secondary" onclick="toggleSound()" id="soundToggle"></button>
             
             <!-- Music Controls -->
-            <div style="position: absolute; top: 10px; right: 80px; display: flex; align-items: center; gap: 8px;">
-                <button class="btn btn-secondary" onclick="toggleMusic()" id="musicToggle" style="min-width: auto; padding: 8px 12px;">🎵</button>
+            <div id="musicControlsContainer">
+                <button class="btn btn-secondary" onclick="toggleMusic()" id="musicToggle"></button>
                 <!-- Volume Control -->
-                <div id="volumeControl" style="display: flex; align-items: center; gap: 6px; background: rgba(255,255,255,0.1); backdrop-filter: blur(10px); padding: 6px 10px; border-radius: 15px; border: 1px solid rgba(255,255,255,0.2);">
+                <div id="volumeControl">
                     <span style="color: rgba(255,255,255,0.8); font-size: 0.7em; font-weight: 600;">♪</span>
                     <input type="range" id="volumeSlider" min="0" max="100" value="15" 
-                           style="width: 60px; height: 4px; background: rgba(255,255,255,0.3); outline: none; border-radius: 2px; appearance: none; cursor: pointer;"
                            oninput="adjustMusicVolume(this.value)">
                     <span id="volumeDisplay" style="color: rgba(255,255,255,0.8); font-size: 0.6em; font-weight: 600; min-width: 20px;">15%</span>
                 </div>
@@ -1370,6 +1475,10 @@
         window.addEventListener('load', () => {
             console.log('Page loaded, initializing music...');
             
+            // Set initial button states explicitly
+            document.getElementById('soundToggle').textContent = soundEnabled ? '🔊' : '🔇';
+            document.getElementById('musicToggle').textContent = musicEnabled ? '🎵' : '🔇';
+
             // Start music only once when page loads
             if (musicEnabled) {
                 setTimeout(() => playBackgroundMusic(), 1000);
@@ -1382,25 +1491,12 @@
                 }
             }, { once: true });
             
-            document.getElementById('musicToggle').addEventListener('click', () => {
-                if (musicEnabled) {
-                    playBackgroundMusic();
-                }
-            });
-
-            // Cheat Codes / Developer Tools
-            document.addEventListener('keydown', (event) => {
-                // Ctrl+Shift+S to Skip Question
-                if (event.ctrlKey && event.shiftKey && event.key === 'S') {
-                    event.preventDefault(); // Prevent default browser action
-                    skipQuestion();
-                }
-                // Ctrl+Shift+C to Check Correct
-                if (event.ctrlKey && event.shiftKey && event.key === 'C') {
-                    event.preventDefault(); // Prevent default browser action
-                    checkCorrectCheat();
-                }
-            });
+            // Removed redundant event listener as onclick attribute handles it
+            // document.getElementById('musicToggle').addEventListener('click', () => {
+            //     if (musicEnabled) {
+            //         playBackgroundMusic();
+            //     }
+            // });
         });
         
         function isMusicPlaying() {
@@ -3578,6 +3674,10 @@
         // Draw images
         round.images.forEach((imageType, index) => {
             const canvas = document.getElementById(`canvas${index}`);
+            // Set canvas dimensions to match the image-container CSS
+            canvas.width = 190;
+            canvas.height = 190;
+
             if (drawingFunctions[imageType]) {
                 drawingFunctions[imageType](canvas);
             }
