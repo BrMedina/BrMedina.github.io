@@ -249,22 +249,23 @@
         }
 
         .image-container {
-            width: 100%;
-            height: 120px;
-            border-radius: 15px;
-            border: 2px solid rgba(138, 43, 226, 0.4);
+            width: 190px; /* Slightly increased size */
+            height: 190px; /* Slightly increased size */
+            background-color: #f0f0f0;
+            border: 1px solid #ddd;
             display: flex;
-            align-items: center;
             justify-content: center;
-            font-size: 2.5em;
-            background: linear-gradient(45deg, #f0f4ff, #e6f2ff);
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            align-items: center;
+            overflow: hidden;
             cursor: pointer;
             position: relative;
-            overflow: hidden;
-            box-shadow: 
-                0 6px 20px rgba(138, 43, 226, 0.2),
-                0 0 15px rgba(0, 100, 255, 0.1);
+            box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+            border-radius: 8px; /* Slightly rounded corners */
+            transition: all 0.3s ease; /* Smooth transition for all properties */
+        }
+
+        .image-container:hover {
+            box-shadow: 0 0 15px rgba(241, 134, 255, 0.8), 0 0 25px rgba(217, 103, 255, 0.6); /* Glowing background effect */
         }
 
         .image-container::before {
@@ -280,24 +281,10 @@
 
         /* Removed: .image-container:hover::before { left: 100%; } */
 
-        .image-container {
-            /* ... existing code ... */
-            /* Removed: transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1); */
-            /* Removed: box-shadow, border-color from hover state */
-        }
-
-        /* Removed: .image-container:hover {
-            transform: translateY(-8px) scale(1.02);
-            border-color: #0064ff;
-            box-shadow: 
-                0 15px 35px rgba(138, 43, 226, 0.3),
-                0 0 25px rgba(0, 100, 255, 0.4);
-        } */
-
         .image-container canvas {
-            width: 100%;
-            height: 100%;
-            border-radius: 12px;
+            max-width: 100%;
+            max-height: 100%;
+            display: block;
         }
 
         .word-input-section {
@@ -753,9 +740,7 @@
         /* Apply similar hover to music toggle if it doesn't have one */
         #musicToggle:hover {
             transform: translateY(-3px);
-            box-shadow: 
-                0 8px 20px rgba(138, 43, 226, 0.4),
-                0 0 15px rgba(0, 100, 255, 0.3);
+            box-shadow: 0 5px 15px rgba(0, 255, 255, 0.4), 0 0 10px rgba(0, 255, 255, 0.6);
         }
 
         /* Combined Stats and Category Section */
@@ -964,9 +949,9 @@
 
             /* Mobile adjustments for controls */
             #soundToggle, #musicToggle {
-                top: 15px !important;
-                padding: 6px 10px !important;
-                font-size: 0.9em !important;
+                position: static; /* Remove fixed positioning */
+                margin: 10px auto; /* Center and add some margin */
+                display: block; /* Ensure they take up full width */
             }
 
             /* Mobile music controls container */
@@ -977,8 +962,10 @@
             }
 
             #volumeControl {
-                padding: 4px 8px !important;
-                font-size: 0.7em !important;
+                position: static; /* Remove fixed positioning */
+                margin: 10px auto; /* Center and add some margin */
+                display: block; /* Ensure it takes up full width */
+                width: 80%; /* Adjust width for better mobile display */
             }
 
             #volumeSlider {
@@ -1091,6 +1078,18 @@
                 font-size: 1.2em;
             }
         }
+
+        @media (max-width: 768px) {
+            .stat-item {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+
+        /* .word-choice-container { */
+        /* } */
+
+        /* Mobile adjustments for controls */
     </style>
 </head>
 <body>
